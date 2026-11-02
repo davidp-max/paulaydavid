@@ -39,11 +39,11 @@ const defaultWeddingData = {
   },
   
   timeline: [
-    { id: 1, time: "17:00", title: "Ceremonia", desc: "Llegada de invitados y daremos el 'Sí, quiero'" },
-    { id: 2, time: "18:30", title: "Autobuses y Traslado", desc: "Salida de autobuses hacia la finca del banquete" },
-    { id: 3, time: "19:00", title: "Cocktail de Bienvenida", desc: "Aperitivos, jamón, cortador y música en directo en los jardines" },
-    { id: 4, time: "21:00", title: "Cena y Banquete", desc: "Menú especial en el salón principal" },
-    { id: 5, time: "23:30", title: "Fotomatón & Barra Libre", desc: "¡Apertura del baile, fotomatón con nuestro sello P&D y fiesta!" }
+    { id: 1, time: "11:00", title: "Ceremonia", desc: "Llegada de invitados y daremos el 'Sí, quiero'" },
+    { id: 2, time: "12:30", title: "Autobuses y Traslado", desc: "Nos hacemos fotos y tiempo libre para tomar una cerveza" },
+    { id: 3, time: "14:15", title: "Cocktail de Bienvenida", desc: "Aperitivos, cortador de jamón, quesos y mas tapas  " },
+    { id: 4, time: "16:00", title: "Cena y Banquete", desc: "Menú especial en el salón principal" },
+    { id: 5, time: "18:30", title: "Fotomatón & Barra Libre", desc: "¡Apertura del baile, fotomatón con nuestro sello P&D y fiesta!" }
   ],
   
   gallery: [
