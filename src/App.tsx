@@ -31,12 +31,12 @@ const defaultWeddingData = {
   
   banquet: {
     title: "El Banquete y Celebración",
-    time: "19:00 H",
-    place: "Finca El Olivar de Santa Teresa",
-    address: "Carretera M-300, Km 12, Madrid",
+    time: "14:15 H",
+    place: "Hotel NH Collection Gran Hotel de Zaragoza",
+    address: "Calle de Joaquín Costa, 5, Casco Antiguo, 50001 Zaragoza",
     description: "Continuaremos la celebración con un cocktail de bienvenida, banquete, barra libre y fiesta hasta que el cuerpo aguante.",
-    mapUrl: "https://maps.google.com/?q=Finca+El+Olivar+Madrid",
-    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800"
+    mapUrl: "https://maps.app.goo.gl/DJ9Ypiw6yfBPgCe98",
+    image: "https://i.postimg.cc/Vv6kjnWS/Gran-hotel-acuarela.jpg"
   },
   
   timeline: [
