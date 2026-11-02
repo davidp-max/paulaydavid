@@ -55,7 +55,7 @@ const defaultWeddingData = {
     "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800"
   ],
   
-  iban: "ES91 2100 0418 45 1234567890",
+  iban: "ES55 3017 0550 6525 8285 4820",
   ibanHolder: "Paula y David - Boda",
   giftMessage: "El mejor regalo para nosotros es poder contar con vuestra presencia en este día inolvidable. Si además deseáis hacernos un detalle para comenzar nuestro nuevo camino y nuestra Luna de Miel, os dejamos nuestra cuenta bancaria:",
   
