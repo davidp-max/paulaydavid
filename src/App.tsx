@@ -126,34 +126,31 @@ function App() {
     e.preventDefault();
     if (!rsvpForm.name.trim()) return;
 
+    // Pega aquí la URL que obtuviste al desplegar en Google Apps Script
+    const SCRIPT_URL = "PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT";
+
     try {
-      // Reemplaza tu-email@gmail.com por el correo donde queráis recibir las confirmaciones
-      const response = await fetch("https://formsubmit.co/ajax/david.pascual.arribas@gmail.com", {
+      await fetch(SCRIPT_URL, {
         method: "POST",
-        headers: { 
+        mode: "no-cors",
+        headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
         body: JSON.stringify({
           Nombre: rsvpForm.name,
           Asistencia: rsvpForm.attending === 'si' ? 'Sí asistirá' : 'No asistirá',
           Acompañantes: rsvpForm.guests,
-          Alergias_Intolerancias: rsvpForm.dietary || 'Ninguna',
-          Cancion_Sugerida: rsvpForm.song || 'Ninguna',
+          Alergias: rsvpForm.dietary || 'Ninguna',
+          Cancion: rsvpForm.song || 'Ninguna',
           Mensaje: rsvpForm.message || 'Sin mensaje'
         })
       });
 
-      if (response.ok) {
-        setRsvpSubmitted(true);
-      } else {
-        alert("Hubo un error al enviar la confirmación. Por favor, inténtalo de nuevo.");
-      }
+      setRsvpSubmitted(true);
     } catch (error) {
-      alert("Error de conexión. Inténtalo de nuevo.");
+      alert("Hubo un error al enviar la confirmación. Por favor, inténtalo de nuevo.");
     }
   };
-  
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-stone-800 font-sans selection:bg-amber-100 selection:text-amber-900">
