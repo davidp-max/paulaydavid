@@ -406,7 +406,7 @@ function App() {
           <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-400 via-amber-600 to-amber-400"></div>
 
           <div className="text-center space-y-3 mb-8">
-            <span className="text-amber-700 font-semibold text-xs tracking-widest uppercase">R.S.V.P.</span>
+            <span className="text-amber-700 font-semibold text-xs tracking-widest uppercase">Se ruega confirmación</span>
             <h2 className="font-serif-wedding text-4xl md:text-5xl text-stone-900">Confirmación de Asistencia</h2>
             <p className="text-stone-500 text-sm">
               Por favor, confirma tu asistencia antes del <strong className="text-stone-800">{wedding.rsvpDeadline}</strong>
