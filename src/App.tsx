@@ -40,7 +40,7 @@ const defaultWeddingData = {
   
   timeline: [
     { id: 1, time: "11:00", title: "Ceremonia", desc: "Llegada de invitados y daremos el 'Sí, quiero'" },
-    { id: 2, time: "12:30", title: "Fotos de los novios", desc: "Nos hacemos fotos" },
+    { id: 2, time: "12:30", title: "Fotos de los novios", desc: "Momento para inmortalizar nuestros recurdos de este día especial" },
     { id: 3, time: "14:15", title: "Cocktail de Bienvenida", desc: "Aperitivos, cortador de jamón, quesos &  mas tapas" },
     { id: 4, time: "16:00", title: "Comida y música en vivo", desc: "Menú especial en el salón principal &  musica en vivo en la rotonda" },
     { id: 5, time: "18:30", title: "Fiesta con DJ", desc: "¡Fotomatón, Barra Libre &  mas sorppresas!" }
