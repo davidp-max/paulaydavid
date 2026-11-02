@@ -10,10 +10,10 @@ const defaultWeddingData = {
   brideName: "Paula",
   groomName: "David",
   monogram: "P & D",
-  weddingDate: "2025-09-20T17:00",
-  dateDisplay: "Sábado, 20 de Septiembre de 2025",
+  weddingDate: "2027-04-24T11:00",
+  dateDisplay: "Sábado, 24 de Abril de 2027",
   heroSubtitle: "¡Nos casamos y nos encantaría compartir este día tan especial contigo!",
-  heroBgImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920",
+  heroBgImage: "https://i.postimg.cc/4Nqr5V1z/Fondo-2027.jpg",
   
   storyTitle: "Nuestra Historia",
   storyText: "Nos conocimos una tarde soleada de primavera y desde aquel instante supimos que comenzaba algo maravilloso. Tras años inolvidables de viajes, risas compartidas y miles de momentos mágicos, hemos decidido dar el paso más importante de nuestras vidas. ¡Queremos celebrar nuestro amor rodeados de la gente a la que más queremos!",
@@ -21,12 +21,12 @@ const defaultWeddingData = {
   
   ceremony: {
     title: "La Ceremonia",
-    time: "17:00 H",
-    place: "Iglesia San Jerónimo el Real",
-    address: "Calle de Moreto, 4, 28014 Madrid",
+    time: "11:00 H",
+    place: "Basílica de Santa Engracia",
+    address: "C. de Tomás Castellano, 1, Casco Antiguo, 50001 Zaragoza",
     description: "La ceremonia religiosa donde nos daremos el 'Sí, quiero'. Os rogamos puntualidad.",
-    mapUrl: "https://maps.google.com/?q=Iglesia+San+Jeronimo+el+Real+Madrid",
-    image: "https://images.unsplash.com/photo-1548625361-185483984534?auto=format&fit=crop&q=80&w=800"
+    mapUrl: "https://maps.app.goo.gl/9zPq8tsVAGpzemV2A",
+    image: "https://i.postimg.cc/KjvRJdx7/basilica-nueva.jpg"
   },
   
   banquet: {
