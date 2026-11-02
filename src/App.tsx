@@ -44,8 +44,8 @@ const defaultWeddingData = {
     { id: 3, time: "14:15", title: "Cocktail de Bienvenida", desc: "Aperitivos, cortador de jamón, tabla de quesos, arroces y  más" },
     { id: 4, time: "16:00", title: "Comida ", desc: "Menú especial en el salón principal" },
     { id: 5, time: "18:00", title: "Música en vivo y en directo", desc: "Grupo sorpresa que os encantará" },
-    { id: 6, time: "20:00", title: "Fiesta con DJ", desc: "¡Fotomatón, barra Libre y  más sorppresas!" },
-    { id: 7, time: "22:00", title: "Recena", desc: "Guardar sitio para seguir la fiesta" }
+    { id: 6, time: "20:00", title: "Fiesta con DJ", desc: "¡Fotomatón, barra libre y  más sorppresas!" },
+    { id: 7, time: "22:00", title: "Recena", desc: "Guardar sitio para continuar la fiesta" }
   ],
   
   gallery: [
