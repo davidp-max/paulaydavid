@@ -121,7 +121,7 @@ function App() {
     setTimeout(() => setIsCopied(false), 3000);
   };
 
-  const handleRsvpSubmit = (e: any) => {
+
     const handleRsvpSubmit = async (e: any) => {
     e.preventDefault();
     if (!rsvpForm.name.trim()) return;
@@ -153,7 +153,7 @@ function App() {
       alert("Error de conexión. Inténtalo de nuevo.");
     }
   };
-  };
+  
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-stone-800 font-sans selection:bg-amber-100 selection:text-amber-900">
