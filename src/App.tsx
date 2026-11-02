@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Heart, Calendar, MapPin, Clock, Music, Gift, Camera, 
-  CheckCircle2, Copy, Edit3, Settings, Eye, RefreshCw, X, Plus, 
-  Trash2, ChevronDown, Sparkles, Navigation, Send, Check, Phone
+  Heart, MapPin, Clock, Gift, Camera, 
+  CheckCircle2, Copy, Sparkles, Navigation, Send, Check, ChevronDown 
 } from 'lucide-react';
 
-// Datos por defecto de la boda
+// Modifica aquí los datos reales de tu boda
 const defaultWeddingData = {
-  brideName: "Paula",
+ brideName: "Paula",
   groomName: "David",
   monogram: "P & D",
   weddingDate: "2027-04-24T11:00",
@@ -40,11 +39,11 @@ const defaultWeddingData = {
   },
   
   timeline: [
-    { id: 1, time: "17:00", title: "Ceremonia", desc: "Llegada de invitados y daremos el 'Sí, quiero'", icon: "church" },
-    { id: 2, time: "18:30", title: "Autobuses y Traslado", desc: "Salida de autobuses hacia la finca del banquete", icon: "bus" },
-    { id: 3, time: "19:00", title: "Cocktail de Bienvenida", desc: "Aperitivos, jamón, cortador y música en directo en los jardines", icon: "glass" },
-    { id: 4, time: "21:00", title: "Cena y Banquete", desc: "Menú especial en el salón principal", icon: "utensils" },
-    { id: 5, time: "23:30", title: "Fotomatón & Barra Libre", desc: "¡Apertura del baile, fotomatón con nuestro sello P&D y fiesta!", icon: "sparkles" }
+    { id: 1, time: "17:00", title: "Ceremonia", desc: "Llegada de invitados y daremos el 'Sí, quiero'" },
+    { id: 2, time: "18:30", title: "Autobuses y Traslado", desc: "Salida de autobuses hacia la finca del banquete" },
+    { id: 3, time: "19:00", title: "Cocktail de Bienvenida", desc: "Aperitivos, jamón, cortador y música en directo en los jardines" },
+    { id: 4, time: "21:00", title: "Cena y Banquete", desc: "Menú especial en el salón principal" },
+    { id: 5, time: "23:30", title: "Fotomatón & Barra Libre", desc: "¡Apertura del baile, fotomatón con nuestro sello P&D y fiesta!" }
   ],
   
   gallery: [
@@ -60,27 +59,14 @@ const defaultWeddingData = {
   ibanHolder: "Paula y David - Boda",
   giftMessage: "El mejor regalo para nosotros es poder contar con vuestra presencia en este día inolvidable. Si además deseáis hacernos un detalle para comenzar nuestro nuevo camino y nuestra Luna de Miel, os dejamos nuestra cuenta bancaria:",
   
-  rsvpDeadline: "15 de Agosto de 2025",
-  contactPhone: "+34 600 123 456"
+  rsvpDeadline: "15 de Agosto de 2025"
 };
 
 function App() {
-  // Inicialización segura con try...catch para evitar errores si el localStorage está corrupto
-  /*const [wedding, setWedding] = useState(() => {
-    try {
-      const saved = localStorage.getItem('wedding_site_data');
-      return saved ? JSON.parse(saved) : defaultWeddingData;
-    } catch (e) {
-      return defaultWeddingData;
-    }
-  });*/
-    
-  const [editMode] = useState(false); // Fijo en false para que no se abra el panel
-  //const [editMode, setEditMode] = useState(false);
-  const [activeTab, setActiveTab] = useState('general');
-  const [isCopied, setIsCopied] = useState(false);
+  const wedding = defaultWeddingData;
 
-  const [rsvps, setRsvps] = useState(() => {
+  const [isCopied, setIsCopied] = useState(false);
+  const [rsvps, setRsvps] = useState<any[]>(() => {
     try {
       const saved = localStorage.getItem('wedding_rsvps');
       return saved ? JSON.parse(saved) : [];
@@ -100,20 +86,12 @@ function App() {
   
   const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
 
-  // Guardar en LocalStorage al modificar
-  useEffect(() => {
-    try {
-      localStorage.setItem('wedding_site_data', JSON.stringify(wedding));
-    } catch (e) {}
-  }, [wedding]);
-
   useEffect(() => {
     try {
       localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps));
     } catch (e) {}
   }, [rsvps]);
 
-  // Cálculo de cuenta atrás
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -137,14 +115,12 @@ function App() {
     return () => clearInterval(timer);
   }, [wedding.weddingDate]);
 
-  // Copiar IBAN
   const handleCopyIban = () => {
     navigator.clipboard.writeText(wedding.iban.replace(/\s+/g, ''));
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 3000);
   };
 
-  // Enviar respuesta RSVP
   const handleRsvpSubmit = (e: any) => {
     e.preventDefault();
     if (!rsvpForm.name.trim()) return;
@@ -152,62 +128,6 @@ function App() {
     const newRsvp = { ...rsvpForm, id: Date.now(), date: new Date().toLocaleDateString() };
     setRsvps([newRsvp, ...rsvps]);
     setRsvpSubmitted(true);
-  };
-
-  // Funciones de actualización del estado
-  const updateWedding = (key: string, value: any) => {
-    setWedding((prev: any) => ({ ...prev, [key]: value }));
-  };
-
-  const updateSubObject = (parent: string, field: string, value: any) => {
-    setWedding((prev: any) => ({
-      ...prev,
-      [parent]: {
-        ...prev[parent],
-        [field]: value
-      }
-    }));
-  };
-
-  const updateGalleryImage = (index: number, newUrl: string) => {
-    const updated = [...wedding.gallery];
-    updated[index] = newUrl;
-    setWedding((prev: any) => ({ ...prev, gallery: updated }));
-  };
-
-  const addTimelineItem = () => {
-    const newItem = {
-      id: Date.now(),
-      time: "20:00 H",
-      title: "Nuevo Evento",
-      desc: "Descripción del momento especial",
-      icon: "clock"
-    };
-    setWedding((prev: any) => ({
-      ...prev,
-      timeline: [...prev.timeline, newItem]
-    }));
-  };
-
-  const updateTimelineItem = (id: number, field: string, value: any) => {
-    setWedding((prev: any) => ({
-      ...prev,
-      timeline: prev.timeline.map((item: any) => item.id === id ? { ...item, [field]: value } : item)
-    }));
-  };
-
-  const deleteTimelineItem = (id: number) => {
-    setWedding((prev: any) => ({
-      ...prev,
-      timeline: prev.timeline.filter((item: any) => item.id !== id)
-    }));
-  };
-
-  const resetToDefault = () => {
-    if (window.confirm("¿Estás seguro de restablecer el diseño por defecto para Paula y David?")) {
-      setWedding(defaultWeddingData);
-      localStorage.removeItem('wedding_site_data');
-    }
   };
 
   return (
@@ -218,259 +138,6 @@ function App() {
         .font-serif-wedding { font-family: 'Cormorant Garamond', Georgia, serif; }
         .font-sans-wedding { font-family: 'Montserrat', sans-serif; }
       `}</style>
-
-      {/* Botón flotante para editar */}
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-        <button
-          onClick={() => setEditMode(!editMode)}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-medium shadow-lg backdrop-blur-md transition-all duration-300 border ${
-            editMode 
-              ? 'bg-amber-600 text-white border-amber-500 ring-4 ring-amber-500/20' 
-              : 'bg-white/90 text-stone-700 hover:bg-white border-stone-200 hover:shadow-xl'
-          }`}
-        >
-          {editMode ? <Eye className="w-4 h-4" /> : <Settings className="w-4 h-4" />}
-          <span>{editMode ? 'Modo Vista Previa' : 'Personalizar Web'}</span>
-        </button>
-
-        {editMode && (
-          <button
-            onClick={resetToDefault}
-            title="Restablecer datos originales"
-            className="p-2.5 rounded-full bg-white/90 text-stone-600 hover:text-red-600 border border-stone-200 shadow-lg hover:bg-white"
-          >
-            <RefreshCw className="w-4 h-4" />
-          </button>
-        )}
-      </div>
-
-      {/* Panel lateral de personalización */}
-      {editMode && (
-        <div className="fixed inset-y-0 left-0 z-50 w-full max-w-md bg-white shadow-2xl border-r border-stone-200 flex flex-col transition-all duration-300 transform translate-x-0">
-          <div className="p-4 bg-stone-900 text-white flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-400" />
-              <h2 className="font-serif-wedding text-xl font-bold tracking-wide">Panel de Personalización</h2>
-            </div>
-            <button onClick={() => setEditMode(false)} className="text-stone-400 hover:text-white p-1">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          <div className="flex border-b border-stone-200 bg-stone-50 overflow-x-auto text-xs font-medium">
-            <button onClick={() => setActiveTab('general')} className={`px-4 py-3 flex-1 text-center whitespace-nowrap border-b-2 transition ${activeTab === 'general' ? 'border-amber-600 text-amber-700 font-bold bg-white' : 'border-transparent text-stone-500'}`}>General</button>
-            <button onClick={() => setActiveTab('lugares')} className={`px-4 py-3 flex-1 text-center whitespace-nowrap border-b-2 transition ${activeTab === 'lugares' ? 'border-amber-600 text-amber-700 font-bold bg-white' : 'border-transparent text-stone-500'}`}>Ubicaciones</button>
-            <button onClick={() => setActiveTab('programa')} className={`px-4 py-3 flex-1 text-center whitespace-nowrap border-b-2 transition ${activeTab === 'programa' ? 'border-amber-600 text-amber-700 font-bold bg-white' : 'border-transparent text-stone-500'}`}>Programa</button>
-            <button onClick={() => setActiveTab('fotos')} className={`px-4 py-3 flex-1 text-center whitespace-nowrap border-b-2 transition ${activeTab === 'fotos' ? 'border-amber-600 text-amber-700 font-bold bg-white' : 'border-transparent text-stone-500'}`}>Imágenes</button>
-            <button onClick={() => setActiveTab('regalo')} className={`px-4 py-3 flex-1 text-center whitespace-nowrap border-b-2 transition ${activeTab === 'regalo' ? 'border-amber-600 text-amber-700 font-bold bg-white' : 'border-transparent text-stone-500'}`}>Regalo / IBAN</button>
-            <button onClick={() => setActiveTab('respuestas')} className={`px-4 py-3 flex-1 text-center whitespace-nowrap border-b-2 transition ${activeTab === 'respuestas' ? 'border-amber-600 text-amber-700 font-bold bg-white' : 'border-transparent text-stone-500'}`}>RSVPs ({rsvps.length})</button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-5 space-y-5 text-sm">
-            {activeTab === 'general' && (
-              <>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Nombre Novia</label>
-                  <input type="text" value={wedding.brideName} onChange={e => updateWedding('brideName', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Nombre Novio</label>
-                  <input type="text" value={wedding.groomName} onChange={e => updateWedding('groomName', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Monograma / Siglas</label>
-                  <input type="text" value={wedding.monogram} onChange={e => updateWedding('monogram', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Fecha y Hora del Evento</label>
-                  <input type="datetime-local" value={wedding.weddingDate} onChange={e => updateWedding('weddingDate', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Fecha Formateada (Texto)</label>
-                  <input type="text" value={wedding.dateDisplay} onChange={e => updateWedding('dateDisplay', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Subtítulo Portada</label>
-                  <textarea rows={2} value={wedding.heroSubtitle} onChange={e => updateWedding('heroSubtitle', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Texto Nuestra Historia</label>
-                  <textarea rows={4} value={wedding.storyText} onChange={e => updateWedding('storyText', e.target.value)} className="w-full p-2.5 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none" />
-                </div>
-              </>
-            )}
-
-            {activeTab === 'lugares' && (
-              <>
-                <div className="p-3 bg-stone-50 border rounded-lg space-y-3">
-                  <h3 className="font-bold text-stone-800 border-b pb-1 text-base">La Ceremonia</h3>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Imagen de la Ceremonia (URL)</label>
-                    <input type="text" value={wedding.ceremony.image || ''} onChange={e => updateSubObject('ceremony', 'image', e.target.value)} className="w-full p-2 border rounded mb-2 text-xs" />
-                    {wedding.ceremony.image && <img src={wedding.ceremony.image} alt="Ceremonia" className="h-20 w-full object-cover rounded border" />}
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Lugar</label>
-                    <input type="text" value={wedding.ceremony.place} onChange={e => updateSubObject('ceremony', 'place', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Hora</label>
-                    <input type="text" value={wedding.ceremony.time} onChange={e => updateSubObject('ceremony', 'time', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Dirección</label>
-                    <input type="text" value={wedding.ceremony.address} onChange={e => updateSubObject('ceremony', 'address', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Enlace Google Maps</label>
-                    <input type="text" value={wedding.ceremony.mapUrl} onChange={e => updateSubObject('ceremony', 'mapUrl', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                </div>
-
-                <div className="p-3 bg-stone-50 border rounded-lg space-y-3">
-                  <h3 className="font-bold text-stone-800 border-b pb-1 text-base">El Banquete / Fiesta</h3>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Imagen del Banquete (URL)</label>
-                    <input type="text" value={wedding.banquet.image || ''} onChange={e => updateSubObject('banquet', 'image', e.target.value)} className="w-full p-2 border rounded mb-2 text-xs" />
-                    {wedding.banquet.image && <img src={wedding.banquet.image} alt="Banquete" className="h-20 w-full object-cover rounded border" />}
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Lugar</label>
-                    <input type="text" value={wedding.banquet.place} onChange={e => updateSubObject('banquet', 'place', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Hora</label>
-                    <input type="text" value={wedding.banquet.time} onChange={e => updateSubObject('banquet', 'time', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Dirección</label>
-                    <input type="text" value={wedding.banquet.address} onChange={e => updateSubObject('banquet', 'address', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-stone-500">Enlace Google Maps</label>
-                    <input type="text" value={wedding.banquet.mapUrl} onChange={e => updateSubObject('banquet', 'mapUrl', e.target.value)} className="w-full p-2 border rounded" />
-                  </div>
-                </div>
-              </>
-            )}
-
-            {activeTab === 'programa' && (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b pb-2">
-                  <h3 className="font-bold text-stone-800 text-base">Programa / Itinerario</h3>
-                  <button onClick={addTimelineItem} className="flex items-center gap-1 px-3 py-1.5 bg-amber-700 text-white rounded-lg text-xs font-semibold hover:bg-amber-800 transition">
-                    <Plus className="w-3.5 h-3.5" />
-                    <span>Añadir Evento</span>
-                  </button>
-                </div>
-
-                {wedding.timeline.map((item: any, idx: number) => (
-                  <div key={item.id || idx} className="p-3 bg-stone-50 border border-stone-200 rounded-lg space-y-2 relative">
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs font-bold text-amber-800">Evento #{idx + 1}</span>
-                      <button onClick={() => deleteTimelineItem(item.id)} className="text-stone-400 hover:text-red-600 p-1 transition" title="Eliminar evento">
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="col-span-1">
-                        <label className="block text-[10px] font-semibold text-stone-500 uppercase">Hora</label>
-                        <input type="text" value={item.time} onChange={e => updateTimelineItem(item.id, 'time', e.target.value)} className="w-full p-1.5 border border-stone-300 rounded text-xs font-semibold" />
-                      </div>
-                      <div className="col-span-2">
-                        <label className="block text-[10px] font-semibold text-stone-500 uppercase">Título</label>
-                        <input type="text" value={item.title} onChange={e => updateTimelineItem(item.id, 'title', e.target.value)} className="w-full p-1.5 border border-stone-300 rounded text-xs font-semibold" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-[10px] font-semibold text-stone-500 uppercase">Descripción</label>
-                      <input type="text" value={item.desc} onChange={e => updateTimelineItem(item.id, 'desc', e.target.value)} className="w-full p-1.5 border border-stone-300 rounded text-xs" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {activeTab === 'fotos' && (
-              <>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Imagen de Portada (URL)</label>
-                  <input type="text" value={wedding.heroBgImage} onChange={e => updateWedding('heroBgImage', e.target.value)} className="w-full p-2 border rounded mb-2" />
-                  <img src={wedding.heroBgImage} alt="Preview Portada" className="h-24 w-full object-cover rounded border" />
-                </div>
-                <hr className="my-3" />
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Imagen "Nuestra Historia" (URL)</label>
-                  <input type="text" value={wedding.storyImage} onChange={e => updateWedding('storyImage', e.target.value)} className="w-full p-2 border rounded mb-2" />
-                  <img src={wedding.storyImage} alt="Preview Historia" className="h-24 w-full object-cover rounded border" />
-                </div>
-                <hr className="my-3" />
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-2">Galería de Fotos ({wedding.gallery.length} imágenes)</label>
-                  <div className="space-y-3">
-                    {wedding.gallery.map((img: string, idx: number) => (
-                      <div key={idx} className="flex gap-2 items-center">
-                        <img src={img} alt={`Preview ${idx}`} className="w-12 h-12 object-cover rounded border flex-shrink-0" />
-                        <input type="text" value={img} onChange={e => updateGalleryImage(idx, e.target.value)} className="flex-1 p-2 border rounded text-xs" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </>
-            )}
-
-            {activeTab === 'regalo' && (
-              <>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Número de Cuenta / IBAN</label>
-                  <input type="text" value={wedding.iban} onChange={e => updateWedding('iban', e.target.value)} className="w-full p-2 border rounded font-mono" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Titular de la cuenta</label>
-                  <input type="text" value={wedding.ibanHolder} onChange={e => updateWedding('ibanHolder', e.target.value)} className="w-full p-2 border rounded" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-stone-600 uppercase mb-1">Mensaje explicativo</label>
-                  <textarea rows={4} value={wedding.giftMessage} onChange={e => updateWedding('giftMessage', e.target.value)} className="w-full p-2 border rounded" />
-                </div>
-              </>
-            )}
-
-            {activeTab === 'respuestas' && (
-              <div>
-                <h3 className="font-bold text-stone-800 mb-3">Confirmaciones recibidas</h3>
-                {rsvps.length === 0 ? (
-                  <p className="text-stone-500 italic text-center py-6">Aún no hay confirmaciones enviadas.</p>
-                ) : (
-                  <div className="space-y-3">
-                    {rsvps.map((item: any) => (
-                      <div key={item.id} className="p-3 bg-stone-50 border rounded-lg text-xs space-y-1">
-                        <div className="flex justify-between font-bold text-stone-800">
-                          <span>{item.name}</span>
-                          <span className={item.attending === 'si' ? 'text-emerald-700' : 'text-red-600'}>
-                            {item.attending === 'si' ? `✓ Asiste (${item.guests} pers.)` : '✕ No asiste'}
-                          </span>
-                        </div>
-                        {item.dietary && <p className="text-stone-600"><strong>Intolerancias:</strong> {item.dietary}</p>}
-                        {item.song && <p className="text-stone-600"><strong>Canción:</strong> {item.song}</p>}
-                        {item.message && <p className="text-stone-600 italic">"{item.message}"</p>}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="p-4 bg-stone-100 border-t flex justify-end">
-            <button onClick={() => setEditMode(false)} className="px-4 py-2 bg-stone-900 text-white rounded-lg font-medium hover:bg-stone-800">
-              Cerrar y Ver Resultado
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Navegación Superior */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-200/50 shadow-sm transition-all">
@@ -559,7 +226,7 @@ function App() {
         </div>
       </section>
 
-      {/* Sección Historia */}
+      {/* Historia */}
       <section id="historia" className="py-24 px-4 bg-[#FAF8F5]">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="relative group">
@@ -582,7 +249,7 @@ function App() {
         </div>
       </section>
 
-      {/* Sección Ubicaciones */}
+      {/* Ubicaciones */}
       <section id="donde-y-cuando" className="py-24 px-4 bg-stone-100/70 relative">
         <div className="max-w-5xl mx-auto space-y-16">
           <div className="text-center space-y-3">
@@ -661,7 +328,7 @@ function App() {
         </div>
       </section>
 
-      {/* Sección Programa */}
+      {/* Programa */}
       <section id="programa" className="py-24 px-4 bg-[#FAF8F5]">
         <div className="max-w-4xl mx-auto space-y-16">
           <div className="text-center space-y-3">
@@ -688,7 +355,7 @@ function App() {
         </div>
       </section>
 
-      {/* Sección Galería */}
+      {/* Galería */}
       <section id="galeria" className="py-24 px-4 bg-stone-100/70">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-3">
@@ -711,7 +378,7 @@ function App() {
         </div>
       </section>
 
-      {/* Sección RSVP */}
+      {/* RSVP */}
       <section id="rsvp" className="py-24 px-4 bg-[#FAF8F5] relative">
         <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-stone-200/90 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-400 via-amber-600 to-amber-400"></div>
@@ -786,7 +453,7 @@ function App() {
         </div>
       </section>
 
-      {/* Sección Regalos */}
+      {/* Regalos */}
       <section id="regalo" className="py-24 px-4 bg-stone-100/70">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <div className="space-y-3">
