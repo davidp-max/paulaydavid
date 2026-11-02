@@ -122,12 +122,37 @@ function App() {
   };
 
   const handleRsvpSubmit = (e: any) => {
+    const handleRsvpSubmit = async (e: any) => {
     e.preventDefault();
     if (!rsvpForm.name.trim()) return;
-    
-    const newRsvp = { ...rsvpForm, id: Date.now(), date: new Date().toLocaleDateString() };
-    setRsvps([newRsvp, ...rsvps]);
-    setRsvpSubmitted(true);
+
+    try {
+      // Reemplaza tu-email@gmail.com por el correo donde queráis recibir las confirmaciones
+      const response = await fetch("https://formsubmit.co/ajax/david.pascual.arribas@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Nombre: rsvpForm.name,
+          Asistencia: rsvpForm.attending === 'si' ? 'Sí asistirá' : 'No asistirá',
+          Acompañantes: rsvpForm.guests,
+          Alergias_Intolerancias: rsvpForm.dietary || 'Ninguna',
+          Cancion_Sugerida: rsvpForm.song || 'Ninguna',
+          Mensaje: rsvpForm.message || 'Sin mensaje'
+        })
+      });
+
+      if (response.ok) {
+        setRsvpSubmitted(true);
+      } else {
+        alert("Hubo un error al enviar la confirmación. Por favor, inténtalo de nuevo.");
+      }
+    } catch (error) {
+      alert("Error de conexión. Inténtalo de nuevo.");
+    }
+  };
   };
 
   return (
