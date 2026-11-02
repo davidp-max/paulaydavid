@@ -127,7 +127,7 @@ function App() {
     if (!rsvpForm.name.trim()) return;
 
     // Pega aquí la URL que obtuviste al desplegar en Google Apps Script
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0UPN3eYBE9aCjO8gV6kfey8aCNjAnGWEufzqppgR5uVLPfencLyx1__pVuvvQ7gdwog/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwCnkFC9dPsS0cNXPj4V35yyl9tIr3IP8oPiEYpJVU0iNyC7l76MXCfIxEcemWZhpmKRA/exec";
 
     try {
       await fetch(SCRIPT_URL, {
