@@ -59,7 +59,7 @@ const defaultWeddingData = {
   ibanHolder: "Paula y David - Boda",
   giftMessage: "El mejor regalo para nosotros es poder contar con vuestra presencia en este día inolvidable. Si además deseáis hacernos un detalle para comenzar nuestro nuevo camino y nuestra Luna de Miel, os dejamos nuestra cuenta bancaria:",
   
-  rsvpDeadline: "15 de Marzo de 2027"
+  rsvpDeadline: "28 de Marzo de 2027"
 };
 
 function App() {
