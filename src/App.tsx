@@ -66,14 +66,14 @@ const defaultWeddingData = {
 
 function App() {
   // Inicialización segura con try...catch para evitar errores si el localStorage está corrupto
-  const [wedding, setWedding] = useState(() => {
+  /*const [wedding, setWedding] = useState(() => {
     try {
       const saved = localStorage.getItem('wedding_site_data');
       return saved ? JSON.parse(saved) : defaultWeddingData;
     } catch (e) {
       return defaultWeddingData;
     }
-  });
+  });*/
    const [wedding] = useState(defaultWeddingData);
   const [editMode] = useState(false); // Fijo en false para que no se abra el panel
   //const [editMode, setEditMode] = useState(false);
