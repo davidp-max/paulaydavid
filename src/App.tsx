@@ -444,9 +444,7 @@ function App() {
                   <label className="block text-xs font-bold text-stone-700 uppercase mb-2">Nº de Acompañantes</label>
                   <select value={rsvpForm.guests} onChange={e => setRsvpForm({...rsvpForm, guests: e.target.value})} className="w-full p-3.5 border border-stone-300 rounded-xl outline-none text-sm bg-white">
                     <option value="1">Solo yo (1)</option>
-                    <option value="2">2 personas</option>
-                    <option value="3">3 personas</option>
-                    <option value="4">Familia (4+)</option>
+                    <option value="2">Voy con acompañante (2)</option>
                   </select>
                 </div>
               </div>
