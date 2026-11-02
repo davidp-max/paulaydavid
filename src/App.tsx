@@ -42,7 +42,7 @@ const defaultWeddingData = {
     { id: 1, time: "11:00", title: "Ceremonia", desc: "Llegada de invitados y daremos el 'Sí, quiero'" },
     { id: 2, time: "12:30", title: "Fotos de los novios", desc: "Nos hacemos fotos" },
     { id: 3, time: "14:15", title: "Cocktail de Bienvenida", desc: "Aperitivos, cortador de jamón, quesos y mas tapas  " },
-    { id: 4, time: "16:00", title: "Cena y Banquete", desc: "Menú especial en el salón principal" },
+    { id: 4, time: "16:00", title: "Comida y Banquete", desc: "Menú especial en el salón principal" },
     { id: 5, time: "18:30", title: "Fotomatón & Barra Libre", desc: "¡Apertura del baile, fotomatón con nuestro sello P&D y fiesta!" }
   ],
   
