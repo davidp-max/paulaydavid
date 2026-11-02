@@ -16,7 +16,7 @@ const defaultWeddingData = {
   
   storyTitle: "Nuestra Historia",
   storyText: "Nos conocimos una tarde soleada de primavera y desde aquel instante supimos que comenzaba algo maravilloso. Tras años inolvidables de viajes, risas compartidas y miles de momentos mágicos, hemos decidido dar el paso más importante de nuestras vidas. ¡Queremos celebrar nuestro amor rodeados de la gente a la que más queremos!",
-  storyImage: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1000",
+  storyImage: "https://i.postimg.cc/4Nqr5V1z/Fondo-2027.jpg",
   
   ceremony: {
     title: "La Ceremonia",
