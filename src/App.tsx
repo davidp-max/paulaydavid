@@ -74,7 +74,7 @@ function App() {
       return defaultWeddingData;
     }
   });*/
-   const [wedding] = useState(defaultWeddingData);
+    [wedding] = useState(defaultWeddingData);
   const [editMode] = useState(false); // Fijo en false para que no se abra el panel
   //const [editMode, setEditMode] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
