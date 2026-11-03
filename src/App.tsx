@@ -167,9 +167,7 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-200/50 shadow-sm transition-all">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <a href="#portada" className="font-serif-wedding text-2xl font-bold tracking-widest text-stone-900 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-sm font-semibold border border-amber-300">
-              {wedding.monogram}
-            </span>
+            <img src="./logo.jpeg" alt="Logo Paula y David" className="w-10 h-10 rounded-full object-cover border border-amber-300 shadow-sm bg-white" />
             <span>{wedding.brideName} & {wedding.groomName}</span>
           </a>
 
@@ -196,12 +194,10 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white space-y-6 py-20">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full border-2 border-amber-300/80 bg-stone-900/40 backdrop-blur-md p-2 shadow-2xl mb-2">
-            <div className="w-full h-full rounded-full border border-amber-300/40 flex flex-col items-center justify-center text-amber-200">
-              <span className="font-serif-wedding text-2xl font-bold tracking-tighter">{wedding.monogram}</span>
-              <Sparkles className="w-3 h-3 text-amber-300 -mt-1" />
-            </div>
+          <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-2 border-amber-300/80 bg-white/90 backdrop-blur-md p-1 shadow-2xl mb-2">
+            <img src="./logo.jpeg" alt="Logo Paula y David" className="w-full h-full rounded-full object-cover" />
           </div>
+        </div>
 
           <p className="text-amber-200 text-sm md:text-base tracking-[0.3em] uppercase font-light">¡Nos Casamos!</p>
 
@@ -507,11 +503,9 @@ function App() {
 
       {/* Pie de página */}
       <footer className="bg-stone-900 text-white py-16 px-4 text-center space-y-6">
-        <div className="w-16 h-16 rounded-full border border-amber-400/40 mx-auto flex items-center justify-center font-serif-wedding text-2xl font-bold text-amber-300">
-          {wedding.monogram}
-        </div>
-        <h3 className="font-serif-wedding text-3xl font-light">{wedding.brideName} & {wedding.groomName}</h3>
-        <p className="text-amber-200/70 text-xs tracking-widest uppercase">{wedding.dateDisplay}</p>
+        <img src="./logo.jpeg" alt="Logo Paula y David" className="w-20 h-20 rounded-full mx-auto object-cover border-2 border-amber-400/40 bg-white shadow-md" />
+          <h3 className="font-serif-wedding text-3xl font-light">{wedding.brideName} & {wedding.groomName}</h3>
+          <p className="text-amber-200/70 text-xs tracking-widest uppercase">{wedding.dateDisplay}</p>
       </footer>
 
     </div>
