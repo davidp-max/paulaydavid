@@ -167,7 +167,7 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-200/50 shadow-sm transition-all">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <a href="#portada" className="font-serif-wedding text-2xl font-bold tracking-widest text-stone-900 flex items-center gap-2">
-            <img src="./logo.jpeg" alt="Logo Paula y David" className="w-10 h-10 rounded-full object-cover border border-amber-300 shadow-sm bg-white" />
+            <img src={`${import.meta.env.BASE_URL}logo.jpeg`} alt="Logo Paula y David" className="w-10 h-10 rounded-full object-cover border border-amber-300 shadow-sm bg-white" />
             <span>{wedding.brideName} & {wedding.groomName}</span>
           </a>
 
@@ -187,13 +187,9 @@ function App() {
       </header>
 
       {/* Sección de Portada */}
-     {/* Sección de Portada */}
       <section id="portada" className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={wedding.heroBgImage} 
-            alt="Wedding Cover" 
-            className="w-full h-full object-cover scale-105 filter brightness-90" 
+          <img src={wedding.heroBgImage} alt="Wedding Cover" className="w-full h-full object-cover scale-105 filter brightness-90" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-900/40 to-stone-900/30" />
         </div>
@@ -202,11 +198,7 @@ function App() {
           
           {/* Logo Paula & David */}
           <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-2 border-amber-300/80 bg-white/90 backdrop-blur-md p-1 shadow-2xl mb-2">
-            <img 
-              src="./logo.jpeg" 
-              alt="Logo Paula y David" 
-              className="w-full h-full rounded-full object-cover" 
-            />
+            <img src={`${import.meta.env.BASE_URL}logo.jpeg`} alt="Logo Paula y David" className="w-full h-full rounded-full object-cover" />
           </div>
 
           <p className="text-amber-200 text-sm md:text-base tracking-[0.3em] uppercase font-light">
@@ -517,7 +509,7 @@ function App() {
 
       {/* Pie de página */}
       <footer className="bg-stone-900 text-white py-16 px-4 text-center space-y-6">
-        <img src="./logo.jpeg" alt="Logo Paula y David" className="w-20 h-20 rounded-full mx-auto object-cover border-2 border-amber-400/40 bg-white shadow-md" />
+        <img src={`${import.meta.env.BASE_URL}logo.jpeg`} alt="Logo Paula y David" className="w-20 h-20 rounded-full mx-auto object-cover border-2 border-amber-400/40 bg-white shadow-md" />
           <h3 className="font-serif-wedding text-3xl font-light">{wedding.brideName} & {wedding.groomName}</h3>
           <p className="text-amber-200/70 text-xs tracking-widest uppercase">{wedding.dateDisplay}</p>
       </footer>
