@@ -168,9 +168,7 @@ function App() {
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-200/50 shadow-sm transition-all">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <a href="#portada" className="font-serif-wedding text-2xl font-bold tracking-widest text-stone-900 flex items-center gap-2">
-            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full border-2 border-amber-300/80 bg-white/90 backdrop-blur-md p-1 shadow-2xl mb-2 shrink-0">
-                <img src={logoImg} alt="Logo Paula y David" className="w-full h-full rounded-full object-cover" />
-           </div>
+            <img src={logoImg} alt="Logo Paula y David" className="w-8 h-8 rounded-full object-cover border border-amber-300 shadow-sm bg-white shrink-0" />
             <span>{wedding.brideName} & {wedding.groomName}</span>
           </a>
 
