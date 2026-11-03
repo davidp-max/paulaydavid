@@ -187,6 +187,7 @@ function App() {
       </header>
 
       {/* Sección de Portada */}
+      {/* Sección de Portada */}
       <section id="portada" className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={wedding.heroBgImage} alt="Wedding Cover" className="w-full h-full object-cover scale-105 filter brightness-90" />
@@ -194,10 +195,15 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white space-y-6 py-20">
+          
+          {/* Logo Paula & David */}
           <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-2 border-amber-300/80 bg-white/90 backdrop-blur-md p-1 shadow-2xl mb-2">
-            <img src="./logo.jpeg" alt="Logo Paula y David" className="w-full h-full rounded-full object-cover" />
+            <img 
+              src="./logo.jpeg" 
+              alt="Logo Paula y David" 
+              className="w-full h-full rounded-full object-cover" 
+            />
           </div>
-        </div>
 
           <p className="text-amber-200 text-sm md:text-base tracking-[0.3em] uppercase font-light">¡Nos Casamos!</p>
 
@@ -212,6 +218,39 @@ function App() {
               {wedding.dateDisplay}
             </span>
           </div>
+
+          {/* Cuenta atrás */}
+          <div className="pt-8 grid grid-cols-4 gap-3 max-w-md mx-auto">
+            <div className="bg-stone-900/60 backdrop-blur-md border border-amber-300/30 p-3 rounded-xl text-center">
+              <span className="block font-serif-wedding text-2xl md:text-4xl text-amber-300 font-bold">{timeLeft.days}</span>
+              <span className="text-[10px] uppercase tracking-widest text-stone-300">Días</span>
+            </div>
+            <div className="bg-stone-900/60 backdrop-blur-md border border-amber-300/30 p-3 rounded-xl text-center">
+              <span className="block font-serif-wedding text-2xl md:text-4xl text-amber-300 font-bold">{timeLeft.hours}</span>
+              <span className="text-[10px] uppercase tracking-widest text-stone-300">Horas</span>
+            </div>
+            <div className="bg-stone-900/60 backdrop-blur-md border border-amber-300/30 p-3 rounded-xl text-center">
+              <span className="block font-serif-wedding text-2xl md:text-4xl text-amber-300 font-bold">{timeLeft.minutes}</span>
+              <span className="text-[10px] uppercase tracking-widest text-stone-300">Min</span>
+            </div>
+            <div className="bg-stone-900/60 backdrop-blur-md border border-amber-300/30 p-3 rounded-xl text-center">
+              <span className="block font-serif-wedding text-2xl md:text-4xl text-amber-300 font-bold">{timeLeft.seconds}</span>
+              <span className="text-[10px] uppercase tracking-widest text-stone-300">Seg</span>
+            </div>
+          </div>
+
+          <div className="pt-6">
+            <a href="#rsvp" className="inline-flex items-center gap-2 px-8 py-3.5 bg-amber-600 hover:bg-amber-700 text-white rounded-full shadow-lg font-medium tracking-wider uppercase text-xs transition duration-300 hover:scale-105">
+              <Heart className="w-4 h-4 fill-white" />
+              <span>Confirmar Asistencia</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 animate-bounce">
+          <ChevronDown className="w-6 h-6" />
+        </div>
+      </section>
 
           {/* Cuenta atrás */}
           <div className="pt-8 grid grid-cols-4 gap-3 max-w-md mx-auto">
