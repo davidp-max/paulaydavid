@@ -3,6 +3,7 @@ import {
   Heart, MapPin, Clock, Gift, Camera, 
   CheckCircle2, Copy, Sparkles, Navigation, Send, Check, ChevronDown 
 } from 'lucide-react';
+import logoImg from './logo.jpeg';
 
 // Modifica aquí los datos reales de tu boda
 const defaultWeddingData = {
