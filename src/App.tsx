@@ -200,8 +200,8 @@ function App() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white space-y-6 py-20">
           
           {/* Logo Paula & David */}
-          <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-2 border-amber-300/80 bg-white/90 backdrop-blur-md p-1 shadow-2xl mb-2">
-            <img src={`${import.meta.env.BASE_URL}logo.jpeg`} alt="Logo Paula y David" className="w-full h-full rounded-full object-cover" />
+          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full border-2 border-amber-300/80 bg-white/90 backdrop-blur-md p-1 shadow-2xl mb-2 shrink-0">
+              <img src={logoImg} alt="Logo Paula y David" className="w-full h-full rounded-full object-cover" />
           </div>
 
           <p className="text-amber-200 text-sm md:text-base tracking-[0.3em] uppercase font-light">
